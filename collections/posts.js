@@ -25,6 +25,16 @@ Meteor.methods({
       submitted: new Date().getTime()
     });
 
+    // wait for 5 seconds
+    if (! this.isSimulation) {
+      var Future = Npm.require ('fibers/future');
+      var future = new Future();
+      Meteor.setTimeout(function(){
+        future.return();
+      }, 5 * 1000);
+      future.wait();
+    }
+
     var postId = Posts.insert(post);
 
     return postId;
