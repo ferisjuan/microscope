@@ -15,7 +15,7 @@ Template.postEdit.events({
       title: $(e.target).find('[name=title]').val()
     }
 
-    Posts.update(currentPostId, {set: postProperties}, function(error){
+    Posts.update(currentPostId, {$set: postProperties}, function(error){
       if (error) {
         // display the error to the user
         alert(error.reason);
